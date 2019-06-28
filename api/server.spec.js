@@ -40,8 +40,16 @@ describe("GET /games", () => {
 
 describe("POST /games", () => {
   it("should return status 201 when game added", async () => {
-    await Games.insert({ title: "pacman", genre: "arcade" });
-    const res = await request(server).post("/games");
+    const res = await request(server)
+      .post("/games")
+      .send({ title: "pacman", genre: "arcade" });
     expect(res.status).toBe(201);
+  });
+
+  it("should return status 422 if not enough info", async () => {
+    const res = await request(server)
+      .post("/games")
+      .send({ title: "mario" });
+    expect(res.status).toBe(422);
   });
 });

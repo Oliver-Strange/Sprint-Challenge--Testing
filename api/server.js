@@ -31,7 +31,7 @@ server.post("/games", async (req, res) => {
       res.status(500).json({ message: "server error" });
     }
   } else {
-    res.status(400).json({ message: "provide title and genre" });
+    res.status(422).json({ message: "provide title and genre" });
   }
 });
 
