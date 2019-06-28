@@ -19,4 +19,18 @@ describe("games model", () => {
       expect(games).toHaveLength(2);
     });
   });
+
+  describe("findGames()", () => {
+    it("should return list of games", async () => {
+      await Games.insert({
+        title: "zelda",
+        genre: "console",
+        releaseYear: "1990"
+      });
+      await Games.insert({ title: "halo", genre: "console" });
+
+      const games = await db("games");
+      expect(games).toHaveLength(2);
+    });
+  });
 });
